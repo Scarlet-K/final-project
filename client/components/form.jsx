@@ -50,10 +50,17 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <img src={this.state.file}></img>
+      <form onSubmit={this.handleSubmit} className="container">
+        <div className="text-center">
+          <img src={this.state.file} className="img-fluid"></img>
+        </div>
+        <div className="custom-file">
+          <input type="file" className="custom-file-input" id="customFile"></input>
+          <label className="custom-file-label" htmlFor="customFile">Choose file</label>
+        </div>
         <input
           required
+          className="form-control"
           type="file"
           name="image"
           ref={this.fileInputRef}
@@ -62,6 +69,7 @@ export default class Form extends React.Component {
         ></input>
         <input
           required
+          className="form-control"
           type="date"
           name="date"
           value={this.state.date}
@@ -69,6 +77,7 @@ export default class Form extends React.Component {
         ></input>
         <input
           required
+          className="form-control"
           type="text"
           name="location"
           value={this.state.location}
@@ -76,9 +85,11 @@ export default class Form extends React.Component {
         ></input>
         <textarea
           required
+          className="form-control form-control-sm"
           name="description"
           value={this.state.description}
           onChange={this.handleChange}
+          rows="4"
         ></textarea>
         <button type="submit">SAVE</button>
       </form>
