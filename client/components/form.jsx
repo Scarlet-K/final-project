@@ -10,6 +10,7 @@ export default class Form extends React.Component {
     };
     this.fileInputRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -18,17 +19,14 @@ export default class Form extends React.Component {
     this.setState({ [name]: value });
   }
 
+  handleFileChange(event) {
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    // const req = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(this.state)
-    // };
-    // fetch('/api/memento', req)
-    //   .then(res => res.json());
     const formData = new FormData();
     const image = this.fileInputRef.current.files[0];
     formData.append('date', this.state.date);
@@ -41,7 +39,6 @@ export default class Form extends React.Component {
     })
       .then(response => response.json())
       .then(body => {
-        // console.log(body);
         this.setState({
           date: '',
           location: '',
@@ -54,11 +51,13 @@ export default class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <img src={this.state.file}></img>
         <input
           required
           type="file"
           name="image"
           ref={this.fileInputRef}
+          onChange={this.handleFileChange}
           accept=".png, jpg, .jpeg, .gif"
         ></input>
         <input

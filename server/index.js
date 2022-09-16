@@ -17,11 +17,7 @@ const app = express();
 
 app.use(staticMiddleware);
 app.use(uploadsMiddleware);
-app.use(express.json());
-
-// app.get('/api/hello', (req, res) => {
-//   res.json({ hello: 'world' });
-// });
+// app.use(express.json());
 
 app.get('/api/memento', (req, res) => {
   res.json({ start: 'hello' });
@@ -34,7 +30,7 @@ app.post('/api/memento', (req, res, next) => {
   }
   const url = `/images/${req.file.filename}`;
   const sql = `
-    insert into "entries" ("date", "location", "description", "url")
+    insert into "entries" ("date", "location", "description", "imageUrl")
     values ($1, $2, $3, $4)
     returning *
   `;
@@ -46,26 +42,6 @@ app.post('/api/memento', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-
-// app.post('/api/memento', uploadsMiddleware, (req, res, next) => {
-//   const { date, location, description } = req.body;
-//   if (!date || !location || !description) {
-//     throw new ClientError(400, 'date, location, and description are required fields');
-//   }
-//   const url = `/images/${req.file.filename}`;
-//   const sql = `
-//     insert into "entries" ("date", "location", "description", "url")
-//     values ($1, $2, $3, $4)
-//     returning *
-//   `;
-//   const params = [date, location, description, url];
-//   db.query(sql, params)
-//     .then(result => {
-//       const [entry] = result.rows;
-//       res.status(201).json(entry);
-//     })
-//     .catch(err => next(err));
-// });
 
 app.use(errorMiddleware);
 

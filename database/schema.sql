@@ -8,10 +8,10 @@ create schema "public";
 
 CREATE TABLE "public"."entries" (
 	"entryId" serial NOT NULL,
-	"imageUrl" TEXT,
-	"date" DATE,
+	"imageUrl" TEXT NOT NULL,
+	"date" DATE NOT NULL,
 	"location" TEXT NOT NULL,
-	"description" TEXT,
+	"description" TEXT NOT NULL,
 	"milestone" BOOLEAN,
 	CONSTRAINT "entries_pk" PRIMARY KEY ("entryId")
 ) WITH (
