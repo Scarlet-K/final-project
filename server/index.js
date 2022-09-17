@@ -19,8 +19,32 @@ app.use(staticMiddleware);
 app.use(uploadsMiddleware);
 // app.use(express.json());
 
-app.get('/api/memento', (req, res) => {
-  res.json({ start: 'hello' });
+app.get('/api/memento', (req, res, next) => {
+  const sql = `
+    select *
+      from "entries"
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/memento/:entryId', (req, res, next) => {
+  const entryId = Number(req.params.entryId);
+  const sql = `
+   select *
+     from "entries"
+     where "entryId" = $1
+  `;
+  const params = [entryId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find entry with entryId ${entryId}`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
 });
 
 app.post('/api/memento', (req, res, next) => {
