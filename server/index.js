@@ -2,14 +2,12 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
+const uploadsMiddleware = require('./upload-middleware');
 
 const app = express();
 
 app.use(staticMiddleware);
-
-app.get('/api/hello', (req, res) => {
-  res.json({ hello: 'world' });
-});
+app.use(uploadsMiddleware);
 
 app.use(errorMiddleware);
 
