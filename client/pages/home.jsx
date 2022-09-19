@@ -15,8 +15,8 @@ export default class Memories extends React.Component {
       .then(entries => this.setState({
         entries,
         isLoading: false
-      }));
-    // .catch(err => console.err('Fetch failed!', err));
+      }))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
