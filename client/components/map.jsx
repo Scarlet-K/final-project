@@ -1,15 +1,57 @@
-import React from 'react';
-import { Wrapper } from '@googlemaps/react-wrapper';
-import MyMapComponent from './mymap';
+// import React from 'react';
+// import { useLoadScript } from '@react-google-maps/api';
 
-export default class Map extends React.Component {
+// export default function Home() {
+//   const { isLoaded } = useLoadScript({
+//     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+//     libraries: ['places']
+//   });
 
-  render() {
-    return (
-      <Wrapper apiKey={process.env.GOOGLE_MAPS_API_KEY}>
-        <MyMapComponent />
-      </Wrapper>
-    );
-  }
+//   return <div>map</div>;
+// }
 
-}
+// import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+
+// const containerStyle = {
+//   width: '400px',
+//   height: '400px'
+// };
+
+// const center = {
+//   lat: -3.745,
+//   lng: -38.523
+// };
+
+// function MyComponent() {
+//   const { isLoaded } = useJsApiLoader({
+//     id: 'google-map-script',
+//     googleMapsApiKey: 'YOUR_API_KEY'
+//   });
+
+//   const [map, setMap] = React.useState(null);
+
+//   const onLoad = React.useCallback(function callback(map) {
+//     const bounds = new window.google.maps.LatLngBounds(center);
+//     map.fitBounds(bounds);
+//     setMap(map);
+//   }, []);
+
+//   const onUnmount = React.useCallback(function callback(map) {
+//     setMap(null);
+//   }, []);
+
+//   return isLoaded
+//     ? (
+//     <GoogleMap
+//       mapContainerStyle={containerStyle}
+//       center={center}
+//       zoom={10}
+//       onLoad={onLoad}
+//       onUnmount={onUnmount}
+//     >
+//       { /* Child components, such as markers, info windows, etc. */}
+//       <></>
+//     </GoogleMap>
+//       )
+//     : <></>;
+// }
