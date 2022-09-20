@@ -18,6 +18,17 @@ const app = express();
 app.use(staticMiddleware);
 app.use(uploadsMiddleware);
 
+app.get('/api/memento', (req, res, next) => {
+  const sql = `
+    select *
+      from "entries"
+      order by "entryId" desc
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.post('/api/memento', (req, res, next) => {
   const { date, location, description } = req.body;
   if (!date || !location || !description) {
