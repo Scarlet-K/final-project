@@ -1,6 +1,6 @@
 import React from 'react';
-// import Form from './pages/form';
-import Map from './components/map';
+import Form from './pages/form';
+// import Map from './components/map';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class App extends React.Component {
   }
 
   renderPage() {
-    return <Map />;
+    return <Form />;
   }
 
   render() {

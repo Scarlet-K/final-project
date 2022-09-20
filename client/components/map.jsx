@@ -1,57 +1,28 @@
-// import React from 'react';
-// import { useLoadScript } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-// export default function Home() {
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
-//     libraries: ['places']
-//   });
+const libraries = ['places'];
 
-//   return <div>map</div>;
-// }
+const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
-// import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+export default function Map(props) {
+  const uluru = { lat: -25.344, lng: 131.031 };
 
-// const containerStyle = {
-//   width: '400px',
-//   height: '400px'
-// };
-
-// const center = {
-//   lat: -3.745,
-//   lng: -38.523
-// };
-
-// function MyComponent() {
-//   const { isLoaded } = useJsApiLoader({
-//     id: 'google-map-script',
-//     googleMapsApiKey: 'YOUR_API_KEY'
-//   });
-
-//   const [map, setMap] = React.useState(null);
-
-//   const onLoad = React.useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds(center);
-//     map.fitBounds(bounds);
-//     setMap(map);
-//   }, []);
-
-//   const onUnmount = React.useCallback(function callback(map) {
-//     setMap(null);
-//   }, []);
-
-//   return isLoaded
-//     ? (
-//     <GoogleMap
-//       mapContainerStyle={containerStyle}
-//       center={center}
-//       zoom={10}
-//       onLoad={onLoad}
-//       onUnmount={onUnmount}
-//     >
-//       { /* Child components, such as markers, info windows, etc. */}
-//       <></>
-//     </GoogleMap>
-//       )
-//     : <></>;
-// }
+  return (
+    <LoadScript
+      googleMapsApiKey={mapsAPIKey}
+      libraries={libraries}
+    >
+      <GoogleMap
+        onLoad={props.handleLoad}
+        mapContainerStyle={{
+          width: '100%',
+          height: '100%',
+          minHeight: '17rem'
+        }}
+        center={uluru}
+        zoom={10}
+       />
+    </LoadScript>
+  );
+}

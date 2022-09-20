@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from '../components/map';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -89,6 +90,9 @@ export default class Form extends React.Component {
               value={this.state.location}
               onChange={this.handleChange}
             ></input>
+            <div>
+              <Map />
+            </div>
           </div>
         </div>
         <div className="row px-5">
