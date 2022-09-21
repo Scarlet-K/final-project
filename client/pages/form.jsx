@@ -89,6 +89,7 @@ export default class Form extends React.Component {
               id="location"
               value={this.state.location}
               onChange={this.handleChange}
+              placeholder="Search Address"
             ></input>
             <div>
               <Map />
