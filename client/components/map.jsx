@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
 
 const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
-const location = { lat: -25.344, lng: 131.031 };
+let location = { lat: -25.344, lng: 131.031 };
 const options = { disableDefaultUI: true, zoomControl: true, fields: ['formatted_address', 'geometry', 'name'] };
 const libraries = ['places'];
 const mapStyle = {
@@ -18,24 +18,30 @@ export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.auto = null;
+    // this.autocomplete = React.createRef();
+    this.autocomplete = null;
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
-  onLoad(auto) {
-    // console.log(this.auto);
-    // this.searchBox = searchBox;
-    this.auto = auto;
+  onLoad(autocomplete) {
+    // console.log('loaded!');
+    this.autocomplete = autocomplete;
+    // console.log(this.autocomplete);
+    // console.log(location);
   }
 
   onPlaceChanged() {
-    if (this.auto !== null) {
-      // console.log(this.auto);
-    } else {
-      // console.log('Autocomplete is not loaded yet!');
+    if (this.autocomplete !== null) {
+      // console.log(this.autocomplete.getPlace());
+      const longLat = this.autocomplete.getPlace().geometry.location;
+      // console.log(longLat);
+      location = longLat;
     }
-
+    // } else {
+    //   console.log('Autocomplete is not loaded yet!');
+    // }
+    // console.log(location);
   }
 
   render() {
@@ -44,6 +50,7 @@ export default class Map extends React.Component {
         <Autocomplete
           onLoad={this.onLoad}
           onPlaceChanged={this.onPlaceChanged}
+          // ref={this.autocomplete}
         >
           <input
             type="text"
@@ -61,7 +68,7 @@ export default class Map extends React.Component {
           />
         </StandaloneSearchBox> */}
         <GoogleMap
-          onLoad={this.onLoad}
+          // onLoad={this.onLoad}
           mapContainerStyle={mapStyle}
           center={location}
           zoom={3}
