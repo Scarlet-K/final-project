@@ -81,7 +81,7 @@ export default class Form extends React.Component {
               onChange={this.handleChange}
             ></input>
             <label htmlFor="location" className="px-0 mt-2">Location</label>
-            <input
+            {/* <input
               required
               className="form-control mb-2"
               type="text"
@@ -90,8 +90,8 @@ export default class Form extends React.Component {
               value={this.state.location}
               onChange={this.handleChange}
               placeholder="Search Address"
-            ></input>
-            <div>
+            ></input> */}
+            <div className="relative">
               <Map />
             </div>
           </div>
