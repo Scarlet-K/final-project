@@ -1,11 +1,11 @@
 import React from 'react';
-import { GoogleMap, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
 
 const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
 const location = { lat: -25.344, lng: 131.031 };
-const options = { disableDefaultUI: true, zoomControl: true };
-const places = ['places'];
+const options = { disableDefaultUI: true, zoomControl: true, fields: ['formatted_address', 'geometry', 'name'] };
+const libraries = ['places'];
 const mapStyle = {
   width: '100%',
   height: '100%',
@@ -18,33 +18,48 @@ export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.searchBox = null;
-    this.onPlacesChanged = this.onPlacesChanged.bind(this);
+    this.auto = null;
     this.onLoad = this.onLoad.bind(this);
+    this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
-  onPlacesChanged(searchBox) {
-    // console.log('Heh');
-    this.searchBox.getPlace();
+  onLoad(auto) {
+    // console.log(this.auto);
+    // this.searchBox = searchBox;
+    this.auto = auto;
   }
 
-  onLoad(searchBox) {
-    // console.log(searchBox);
-    this.searchBox = searchBox;
+  onPlaceChanged() {
+    if (this.auto !== null) {
+      // console.log(this.auto);
+    } else {
+      // console.log('Autocomplete is not loaded yet!');
+    }
+
   }
 
   render() {
     return (
-      <LoadScript googleMapsApiKey={mapsAPIKey} libraries={places}>
-        <StandaloneSearchBox
-          onPlacesChanged={this.onPlacesChanged} onLoad={this.onLoad}>
+      <LoadScript googleMapsApiKey={mapsAPIKey} libraries={libraries}>
+        <Autocomplete
+          onLoad={this.onLoad}
+          onPlaceChanged={this.onPlaceChanged}
+        >
+          <input
+            type="text"
+            placeholder="Search Here"
+            className="form-control"
+          />
+        </Autocomplete>
+        {/* <StandaloneSearchBox
+          onPlacesChanged={this.onPlacesChanged} ref={this.searchBox}>
           <input
             type="text"
             placeholder="Search Here"
             className='form-control'
             ref={this.ref}
           />
-        </StandaloneSearchBox>
+        </StandaloneSearchBox> */}
         <GoogleMap
           onLoad={this.onLoad}
           mapContainerStyle={mapStyle}
