@@ -91,7 +91,7 @@ export default class Form extends React.Component {
               onChange={this.handleChange}
               placeholder="Search Address"
             ></input> */}
-            <div className="relative">
+            <div>
               <Map />
             </div>
           </div>
