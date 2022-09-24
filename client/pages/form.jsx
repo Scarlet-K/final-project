@@ -1,5 +1,6 @@
 import React from 'react';
-import Map from '../components/map';
+// import Map from '../components/map';
+// import AutocompleteComponent from '../components/autocomplete';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
   handleChange(event) {
@@ -51,9 +53,20 @@ export default class Form extends React.Component {
       });
   }
 
+  // onPlaceChanged() {
+  //   const lat = this.autocomplete.getPlace().geometry.location.lat();
+  //   const lng = this.autocomplete.getPlace().geometry.location.lng();
+  //   const placeName = this.autocomplete.getPlace().name;
+  //   const address = this.autocomplete.getPlace().formatted_address;
+  //   console.log(lat, lng);
+  //   console.log(placeName);
+  //   console.log(address);
+  //   this.setState({ lat, lng });
+  // }
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="container mx-5-center">
+      <form onSubmit={this.handleSubmit} className="container">
         <div className="row px-5 justify-content-center">
           <div className="col-md px-3">
             <div className="pt-3 image-container">
@@ -81,7 +94,7 @@ export default class Form extends React.Component {
               onChange={this.handleChange}
             ></input>
             <label htmlFor="location" className="px-0 mt-2">Location</label>
-            {/* <input
+            <input
               required
               className="form-control mb-2"
               type="text"
@@ -89,11 +102,12 @@ export default class Form extends React.Component {
               id="location"
               value={this.state.location}
               onChange={this.handleChange}
-              placeholder="Search Address"
-            ></input> */}
-            <div>
+              placeholder="Address"
+            ></input>
+            {/* <div>
+              <AutocompleteComponent onPlaceChanged={this.onPlaceChanged}/>
               <Map />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="row px-5">

@@ -1,12 +1,7 @@
 import React from 'react';
-import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api';
-import Geocode from 'react-geocode';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
-Geocode.setApiKey(mapsAPIKey);
-Geocode.setLanguage('en');
-Geocode.setLocationType('ROOFTOP');
-
 const options = { disableDefaultUI: true, zoomControl: true };
 const libraries = ['places'];
 const mapStyle = {
@@ -21,58 +16,85 @@ export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = { lat: 33.634875, lng: -117.740481 };
-    this.autocomplete = null;
-    this.onLoad = this.onLoad.bind(this);
-    this.onPlaceChanged = this.onPlaceChanged.bind(this);
-  }
-
-  onLoad(autocomplete) {
-    // console.log('loaded!');
-    this.autocomplete = autocomplete;
-    // console.log(this.autocomplete);
-  }
-
-  onPlaceChanged() {
-    if (this.autocomplete !== null) {
-      // console.log('getplace:', this.autocomplete.getPlace());
-      const address = this.autocomplete.getPlace().formatted_address;
-      // console.log(address);
-      Geocode.fromAddress(address)
-        .then(response => {
-          const { lat, lng } = response.results[0].geometry.location;
-          this.setState({ lat, lng });
-        },
-        error => {
-          console.error(error);
-        });
-    }
   }
 
   render() {
-    // console.log(this.state);
     return (
-      <LoadScript googleMapsApiKey={mapsAPIKey} libraries={libraries}>
-        <Autocomplete
-          onLoad={this.onLoad}
-          onPlaceChanged={this.onPlaceChanged}
+      <LoadScript
+        googleMapsApiKey={mapsAPIKey}
+        libraries={libraries}
         >
-          <input
-            type="text"
-            placeholder="Search Here"
-            className="form-control"
-          />
-        </Autocomplete>
         <GoogleMap
           mapContainerStyle={mapStyle}
           center={this.state}
-          zoom={14}
+          zoom={15}
           options={options}
         >
           <Marker
-          position={this.state}
+            position={this.state}
           />
         </GoogleMap>
       </LoadScript>
     );
   }
 }
+
+// export default class Map extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       lat: 33.634875,
+//       lng: -117.740481,
+//       location: ''
+//     };
+//     this.onLoad = this.onLoad.bind(this);
+//     this.onPlaceChanged = this.onPlaceChanged.bind(this);
+//   }
+
+//   onLoad(autocomplete) {
+//     this.autocomplete = autocomplete;
+//     // console.log(this.autocomplete);
+//   }
+
+//   onPlaceChanged() {
+//     const lat = this.autocomplete.getPlace().geometry.location.lat();
+//     const lng = this.autocomplete.getPlace().geometry.location.lng();
+//     // const placeName = this.autocomplete.getPlace().name;
+//     // const address = this.autocomplete.getPlace().formatted_address;
+//     // console.log(lat, lng);
+//     // console.log(placeName);
+//     // console.log(address);
+//     this.setState({ lat, lng });
+//   }
+
+//   render() {
+//     return (
+//       <LoadScript
+//       googleMapsApiKey={mapsAPIKey}
+//       libraries={libraries}>
+//         <Autocomplete
+//           onLoad={this.onLoad}
+//           onPlaceChanged={this.onPlaceChanged}
+//         >
+//           <input
+//             type="text"
+//             name="location"
+//             id="location"
+//             placeholder="Search Here"
+//             className="form-control"
+//           />
+//         </Autocomplete>
+//         <GoogleMap
+//           mapContainerStyle={mapStyle}
+//           center={this.state}
+//           zoom={15}
+//           options={options}
+//         >
+//           <Marker
+//             position={this.state}
+//           />
+//         </GoogleMap>
+//       </LoadScript>
+//     );
+//   }
+// }
