@@ -1,10 +1,6 @@
 import React from 'react';
 import Map from '../components/map';
 import AutocompleteComponent from '../components/autocomplete';
-// import { LoadScript, Autocomplete } from '@react-google-maps/api';
-
-// const libraries = ['places'];
-// const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -12,7 +8,7 @@ export default class Form extends React.Component {
     this.state = {
       date: '',
       location: '',
-      latlng: {},
+      latlng: { lat: 33.634875, lng: -117.740481 },
       description: '',
       file: 'images/placeholder-image-square.jpg'
     };
@@ -20,9 +16,8 @@ export default class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.onPlaceChanged = this.onPlaceChanged.bind(this);
-    // this.onLoad = this.onLoad.bind(this);
-    this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.onLoad = this.onLoad.bind(this);
+    this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
   handleChange(event) {
@@ -60,32 +55,24 @@ export default class Form extends React.Component {
       });
   }
 
-  // onLoad(autocomplete) {
-  //   this.autocomplete = autocomplete;
-  //   console.log(this.autocomplete);
-  // }
+  onLoad(autocomplete) {
+    this.autocomplete = autocomplete;
+  }
 
-  // onPlaceChanged() {
-  //   const lat = this.autocomplete.getPlace().geometry.location.lat();
-  //   const lng = this.autocomplete.getPlace().geometry.location.lng();
-  //   const placeName = this.autocomplete.getPlace().name;
-  //   const address = this.autocomplete.getPlace().formatted_address;
-  //   console.log(lat, lng);
-  //   console.log(placeName);
-  //   console.log(address);
-  //   this.setState({
-  //     latlng: `${lat}, ${lng}`,
-  //     location: address
-  //   });
-  //   console.log(this.state);
-  // }
-
-  onChangeLocation(event) {
-    // console.log(event.target.value);
-    this.setState({ location: this.state.location });
+  onPlaceChanged() {
+    const lat = this.autocomplete.getPlace().geometry.location.lat();
+    const lng = this.autocomplete.getPlace().geometry.location.lng();
+    const placeName = this.autocomplete.getPlace().name;
+    const address = this.autocomplete.getPlace().formatted_address;
+    this.setState({
+      placeName,
+      latlng: { lat, lng },
+      location: address
+    });
   }
 
   render() {
+    // console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit} className="container">
         <div className="row px-5 justify-content-center">
@@ -115,37 +102,15 @@ export default class Form extends React.Component {
               onChange={this.handleChange}
             ></input>
             <label htmlFor="location" className="px-0 mt-2">Location</label>
-            {/* <input
-              required
-              className="form-control mb-2"
-              type="text"
-              name="location"
-              id="location"
-              value={this.state.location}
-              onChange={this.handleChange}
-              placeholder="Address"
-            ></input> */}
             <div>
-              {/* <LoadScript
-                googleMapsApiKey={mapsAPIKey}
-                libraries={libraries}>
-                <Autocomplete
-                  onLoad={this.onLoad}
-                  onPlaceChanged={this.onPlaceChanged}
-                >
-                  <input
-                    type="text"
-                    name="location"
-                    onChange={this.onChangeLocation}
-                    value={this.state.location}
-                    id="location"
-                    placeholder="Search Here"
-                    className="form-control"
-                  />
-                </Autocomplete>
-              </LoadScript> */}
-              <AutocompleteComponent onChangeLocation={this.onChangeLocation}/>
-              <Map />
+              <AutocompleteComponent
+                id="location"
+                value={this.state.location}
+                onPlaceChanged={this.onPlaceChanged}
+                onChange={this.handleChange}
+                onLoad={this.onLoad}
+              />
+              <Map center={this.state.latlng}/>
             </div>
           </div>
         </div>
