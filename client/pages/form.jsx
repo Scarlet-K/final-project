@@ -7,8 +7,9 @@ export default class Form extends React.Component {
     super(props);
     this.state = {
       date: '',
-      location: '',
-      latlng: { lat: 33.634875, lng: -117.740481 },
+      placeName: '',
+      latLng: { lat: 0, lng: 0 },
+      address: '',
       description: '',
       file: 'images/placeholder-image-square.jpg'
     };
@@ -36,7 +37,9 @@ export default class Form extends React.Component {
     const formData = new FormData();
     const image = this.fileInputRef.current.files[0];
     formData.append('date', this.state.date);
-    formData.append('location', this.state.location);
+    formData.append('placeName', this.state.placeName);
+    formData.append('latLng', JSON.stringify(this.state.latLng));
+    formData.append('address', this.state.address);
     formData.append('description', this.state.description);
     formData.append('image', image);
     fetch('/api/memento', {
@@ -47,7 +50,9 @@ export default class Form extends React.Component {
       .then(body => {
         this.setState({
           date: '',
-          location: '',
+          placeName: '',
+          latLng: { lat: 0, lng: 0 },
+          address: '',
           description: '',
           file: 'images/placeholder-image-square.jpg'
         });
@@ -66,16 +71,15 @@ export default class Form extends React.Component {
     const address = this.autocomplete.getPlace().formatted_address;
     this.setState({
       placeName,
-      latlng: { lat, lng },
-      location: address
+      latLng: { lat, lng },
+      address
     });
   }
 
   render() {
-    // console.log(this.state);
     return (
-      <form onSubmit={this.handleSubmit} className="container">
-        <div className="row px-5 justify-content-center">
+      <form onSubmit={this.handleSubmit} className="container mt-nav pt-3">
+        <div className="row justify-content-center">
           <div className="col-md px-3">
             <div className="pt-3 image-container">
               <img src={this.state.file} className="rounded img-fluid"></img>
@@ -104,17 +108,17 @@ export default class Form extends React.Component {
             <label htmlFor="location" className="px-0 mt-2">Location</label>
             <div>
               <AutocompleteComponent
-                id="location"
-                value={this.state.location}
+                id="address"
+                value={this.state.address}
                 onPlaceChanged={this.onPlaceChanged}
                 onChange={this.handleChange}
                 onLoad={this.onLoad}
               />
-              <Map center={this.state.latlng}/>
+              <Map center={this.state.latLng}/>
             </div>
           </div>
         </div>
-        <div className="row px-5">
+        <div className="row">
           <div className="col-md px-3">
             <label htmlFor="description" className="px-0 mt-2">Description</label>
             <textarea
@@ -129,7 +133,7 @@ export default class Form extends React.Component {
             ></textarea>
           </div>
         </div>
-        <div className="row px-5">
+        <div className="row">
           <div className="col-md px-3">
             <button type="submit" className="btn btn-primary my-3 w-100">SAVE</button>
           </div>

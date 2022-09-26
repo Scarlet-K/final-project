@@ -15,7 +15,7 @@ export default function AutocompleteComponent(props) {
           onLoad={props.onLoad}
           onPlaceChanged={props.onPlaceChanged}
         >
-          <LocationInput onPlaceChange={props.onPlaceChanged} value={props.location}/>
+          <LocationInput onPlaceChange={props.onPlaceChanged} value={props.address}/>
         </Autocomplete>
       </LoadScript>
   );

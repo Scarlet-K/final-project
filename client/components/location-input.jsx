@@ -6,10 +6,10 @@ export default function LocationInput(props) {
       <input
         required
         type="text"
-        name="location"
-        id="location"
+        name="address"
+        id="address"
         onChange={props.handleChange}
-        value={props.location}
+        value={props.address}
         placeholder="Search Location"
         className="form-control"
       />

@@ -1,15 +1,28 @@
 import React from 'react';
 import Form from './pages/form';
-// import Home from './pages/home';
+import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      route: parseRoute(window.location.hash)
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', event => {
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
+    });
   }
 
   renderPage() {
-    return <Form />;
+    const { route } = this.state;
+    if (route.path === '') {
+      return <Form />;
+    }
   }
 
   render() {

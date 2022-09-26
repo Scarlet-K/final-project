@@ -30,17 +30,17 @@ app.get('/api/memento', (req, res, next) => {
 });
 
 app.post('/api/memento', (req, res, next) => {
-  const { date, location, description } = req.body;
-  if (!date || !location || !description) {
-    throw new ClientError(400, 'date, location, and description are required fields');
+  const { date, placeName, latLng, address, description } = req.body;
+  if (!date || !placeName || !latLng || !address || !description) {
+    throw new ClientError(400, 'date, address, and description are required fields');
   }
   const url = `/images/${req.file.filename}`;
   const sql = `
-    insert into "entries" ("date", "location", "description", "imageUrl")
-    values ($1, $2, $3, $4)
+    insert into "entries" ("date", "placeName", "latLng", "address", "description", "imageUrl")
+    values ($1, $2, $3, $4, $5, $6)
     returning *
   `;
-  const params = [date, location, description, url];
+  const params = [date, placeName, latLng, address, description, url];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;

@@ -10,9 +10,11 @@ CREATE TABLE "public"."entries" (
 	"entryId" serial NOT NULL,
 	"imageUrl" TEXT NOT NULL,
 	"date" DATE NOT NULL,
-	"location" TEXT NOT NULL,
+	"address" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"milestone" BOOLEAN,
+	"placeName" TEXT NOT NULL,
+	"latLng" json NOT NULL,
 	CONSTRAINT "entries_pk" PRIMARY KEY ("entryId")
 ) WITH (
   OIDS=FALSE
