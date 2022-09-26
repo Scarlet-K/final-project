@@ -57,6 +57,7 @@ export default class Form extends React.Component {
           file: 'images/placeholder-image-square.jpg'
         });
         this.fileInputRef.current.value = null;
+        window.location.hash = '#home';
       });
   }
 
