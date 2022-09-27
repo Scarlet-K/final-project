@@ -2,7 +2,8 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const style = {
-  width: '18rem'
+  width: '18rem',
+  height: '100%'
 };
 
 const img = {
@@ -30,28 +31,30 @@ export default class Memories extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <p>Loading...</p>
-      : <div className="container mt-nav pt-4">
+    return (
+      this.state.isLoading
+        ? <p>Loading...</p>
+        : <div className="container mt-nav pt-3">
         <div className="d-flex flex-wrap justify-content-between">
           {
             this.state.entries.map(entry => {
               return (
-                <div key={entry.entryId}>
+                <div key={entry.entryId} className="mt-3">
                   <Entry entry={entry} />
                 </div>
               );
             })
           }
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
 function Entry(props) {
-  const { imageUrl, date, address } = props.entry;
+  const { entryId, imageUrl, date, address } = props.entry;
   return (
-    <div className="card mt-3" style={style}>
+    <div className="card my-3" style={style}>
       <img src={imageUrl} className="rounded-top" style={img} />
       <div className="card-body">
         <h5 className="card-title">
@@ -61,7 +64,7 @@ function Entry(props) {
         </h5>
         <p className="card-text">{address}</p>
         <div className="text-end">
-          <a href="#" className="btn btn-primary">View</a>
+          <a href={`#entry?entryId=${entryId}`} className="btn btn-primary">View</a>
         </div>
       </div>
     </div>

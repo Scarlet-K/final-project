@@ -46,19 +46,10 @@ export default class Form extends React.Component {
       method: 'POST',
       body: formData
     })
-      .then(response => response.json())
-      .then(body => {
-        // this.setState({
-        //   date: '',
-        //   placeName: '',
-        //   latLng: { lat: 0, lng: 0 },
-        //   address: '',
-        //   description: '',
-        //   file: 'images/placeholder-image-square.jpg'
-        // });
-        this.fileInputRef.current.value = null;
+      .then(() => {
         window.location.hash = '#memories';
-      });
+      })
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   onLoad(autocomplete) {
