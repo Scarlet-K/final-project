@@ -55,13 +55,13 @@ app.post('/api/memento', (req, res, next) => {
   if (!date || !placeName || !latLng || !address || !description) {
     throw new ClientError(400, 'date, address, and description are required fields');
   }
-  const url = `/images/${req.file.filename}`;
+  const imageUrl = `/images/${req.file.filename}`;
   const sql = `
     insert into "entries" ("date", "placeName", "latLng", "address", "description", "imageUrl")
     values ($1, $2, $3, $4, $5, $6)
     returning *
   `;
-  const params = [date, placeName, latLng, address, description, url];
+  const params = [date, placeName, latLng, address, description, imageUrl];
   db.query(sql, params)
     .then(result => {
       const [entry] = result.rows;
