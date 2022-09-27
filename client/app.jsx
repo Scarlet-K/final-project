@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './pages/form';
+import Form from './pages/home';
 import Memories from './pages/memories';
 import Nav from './components/nav';
 import parseRoute from './lib/parse-route';

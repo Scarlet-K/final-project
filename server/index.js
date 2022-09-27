@@ -70,29 +70,6 @@ app.post('/api/memento', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.delete('/api/memento/:entryId', (req, res, next) => {
-//   const entryId = Number(req.params.entryId);
-//   if (!entryId) {
-//     throw new ClientError(400, 'entryId must be a positive integer');
-//   }
-//   const sql = `
-//     delete from "entries"
-//       where "entryId" = $1
-//     returning *
-//   `;
-//   const params = [entryId];
-//   db.query(sql, params)
-//     .then(result => {
-//       const entry = result.rows[0];
-//       if (!entry) {
-//         throw new ClientError(404, `cannot find entry with entryId ${entryId}`);
-//       } else {
-//         res.status(204).send();
-//       }
-//     })
-//     .catch(err => next(err));
-// });
-
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
