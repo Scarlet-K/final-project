@@ -48,16 +48,16 @@ export default class Form extends React.Component {
     })
       .then(response => response.json())
       .then(body => {
-        this.setState({
-          date: '',
-          placeName: '',
-          latLng: { lat: 0, lng: 0 },
-          address: '',
-          description: '',
-          file: 'images/placeholder-image-square.jpg'
-        });
+        // this.setState({
+        //   date: '',
+        //   placeName: '',
+        //   latLng: { lat: 0, lng: 0 },
+        //   address: '',
+        //   description: '',
+        //   file: 'images/placeholder-image-square.jpg'
+        // });
         this.fileInputRef.current.value = null;
-        window.location.hash = '#home';
+        window.location.hash = '#memories';
       });
   }
 
