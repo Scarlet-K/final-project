@@ -21,9 +21,7 @@ export default class Memories extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.state.entries === []) {
-    //   return console.log('empty!');
-    // }
+    // console.log(this.state.entries);
     fetch('/api/memento')
       .then(response => response.json())
       .then(entries => this.setState({
@@ -34,6 +32,7 @@ export default class Memories extends React.Component {
   }
 
   render() {
+    // console.log(this.state.entries);
     return (
       this.state.isLoading
         ? <p>Loading...</p>

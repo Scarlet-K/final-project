@@ -22,11 +22,13 @@ export default class Form extends React.Component {
   }
 
   onChange(event) {
+    // console.log('changing!');
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   onFileChange(event) {
+    // console.log('file!');
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
     });
@@ -57,6 +59,7 @@ export default class Form extends React.Component {
   }
 
   onPlaceChanged() {
+    // console.log('place!');
     const lat = this.autocomplete.getPlace().geometry.location.lat();
     const lng = this.autocomplete.getPlace().geometry.location.lng();
     const placeName = this.autocomplete.getPlace().name;
