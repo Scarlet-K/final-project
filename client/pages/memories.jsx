@@ -21,6 +21,9 @@ export default class Memories extends React.Component {
   }
 
   componentDidMount() {
+    // if (this.state.entries === []) {
+    //   return console.log('empty!');
+    // }
     fetch('/api/memento')
       .then(response => response.json())
       .then(entries => this.setState({
