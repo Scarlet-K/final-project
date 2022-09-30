@@ -75,7 +75,7 @@ export default class Form extends React.Component {
     return (
       <form onSubmit={this.onSubmit} className="container mt-nav pt-3">
         <div className="row justify-content-center">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <div className="pt-3 image-container">
               <img src={this.state.file} className="rounded img-fluid"></img>
             </div>
@@ -113,7 +113,7 @@ export default class Form extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <label htmlFor="description" className="px-0 mt-2">Description</label>
             <textarea
               required
@@ -128,7 +128,7 @@ export default class Form extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <button type="submit" className="btn btn-primary my-3 w-100">SAVE</button>
           </div>
         </div>
