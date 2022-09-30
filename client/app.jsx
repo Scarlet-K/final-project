@@ -1,5 +1,7 @@
 import React from 'react';
-import Form from './pages/form';
+import Form from './pages/home';
+import Memories from './pages/memories';
+import Nav from './components/nav';
 import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
@@ -23,11 +25,15 @@ export default class App extends React.Component {
     if (route.path === '') {
       return <Form />;
     }
+    if (route.path === 'memories') {
+      return <Memories />;
+    }
   }
 
   render() {
     return (
       <>
+        <Nav />
         {this.renderPage()}
       </>
     );

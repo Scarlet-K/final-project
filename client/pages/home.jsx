@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from '../components/map';
-import AutocompleteComponent from '../components/autocomplete';
+import Auto from '../components/auto';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -14,25 +14,27 @@ export default class Form extends React.Component {
       file: 'images/placeholder-image-square.jpg'
     };
     this.fileInputRef = React.createRef();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFileChange = this.handleFileChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
-  handleChange(event) {
+  onChange(event) {
+    // console.log('changing!');
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
-  handleFileChange(event) {
+  onFileChange(event) {
+    // console.log('file!');
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
     });
   }
 
-  handleSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
     const image = this.fileInputRef.current.files[0];
@@ -46,18 +48,10 @@ export default class Form extends React.Component {
       method: 'POST',
       body: formData
     })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          date: '',
-          placeName: '',
-          latLng: { lat: 0, lng: 0 },
-          address: '',
-          description: '',
-          file: 'images/placeholder-image-square.jpg'
-        });
-        this.fileInputRef.current.value = null;
-      });
+      .then(() => {
+        window.location.hash = '#memories';
+      })
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   onLoad(autocomplete) {
@@ -65,6 +59,7 @@ export default class Form extends React.Component {
   }
 
   onPlaceChanged() {
+    // console.log('place!');
     const lat = this.autocomplete.getPlace().geometry.location.lat();
     const lng = this.autocomplete.getPlace().geometry.location.lng();
     const placeName = this.autocomplete.getPlace().name;
@@ -78,9 +73,9 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="container mt-nav pt-3">
+      <form onSubmit={this.onSubmit} className="container mt-nav pt-3">
         <div className="row justify-content-center">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <div className="pt-3 image-container">
               <img src={this.state.file} className="rounded img-fluid"></img>
             </div>
@@ -90,7 +85,7 @@ export default class Form extends React.Component {
               type="file"
               name="image"
               ref={this.fileInputRef}
-              onChange={this.handleFileChange}
+              onChange={this.onFileChange}
               accept=".png, jpg, .jpeg, .gif"
             ></input>
           </div>
@@ -103,15 +98,14 @@ export default class Form extends React.Component {
               name="date"
               id="date"
               value={this.state.date}
-              onChange={this.handleChange}
+              onChange={this.onChange}
             ></input>
             <label htmlFor="location" className="px-0 mt-2">Location</label>
             <div>
-              <AutocompleteComponent
-                id="address"
+              <Auto
                 value={this.state.address}
                 onPlaceChanged={this.onPlaceChanged}
-                onChange={this.handleChange}
+                onChange={this.onChange}
                 onLoad={this.onLoad}
               />
               <Map center={this.state.latLng}/>
@@ -119,7 +113,7 @@ export default class Form extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <label htmlFor="description" className="px-0 mt-2">Description</label>
             <textarea
               required
@@ -127,14 +121,14 @@ export default class Form extends React.Component {
               name="description"
               id="description"
               value={this.state.description}
-              onChange={this.handleChange}
+              onChange={this.onChange}
               rows="4"
               placeholder="Write your message here."
             ></textarea>
           </div>
         </div>
         <div className="row">
-          <div className="col-md px-3">
+          <div className="col px-3">
             <button type="submit" className="btn btn-primary my-3 w-100">SAVE</button>
           </div>
         </div>

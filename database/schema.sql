@@ -8,7 +8,7 @@ create schema "public";
 
 CREATE TABLE "public"."entries" (
 	"entryId" serial NOT NULL,
-	"imageUrl" TEXT NOT NULL,
+	"imageUrl" TEXT,
 	"date" DATE NOT NULL,
 	"address" TEXT NOT NULL,
 	"description" TEXT NOT NULL,

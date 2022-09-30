@@ -1,11 +1,10 @@
 import React from 'react';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
-import LocationInput from './location-input';
 
 const libraries = ['places'];
 const mapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
-export default function AutocompleteComponent(props) {
+export default function Auto(props) {
 
   return (
       <LoadScript
@@ -15,7 +14,16 @@ export default function AutocompleteComponent(props) {
           onLoad={props.onLoad}
           onPlaceChanged={props.onPlaceChanged}
         >
-          <LocationInput onPlaceChange={props.onPlaceChanged} value={props.address}/>
+          <input
+            required
+            id="location"
+            type="text"
+            name="address"
+            onChange={props.onChange}
+            value={props.value}
+            placeholder="Search Location"
+            className="form-control"
+          />
         </Autocomplete>
       </LoadScript>
   );
