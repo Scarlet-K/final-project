@@ -2,12 +2,12 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const style = {
-  width: '25rem',
+  width: '18rem',
   height: '100%'
 };
 
 const img = {
-  height: '16rem',
+  height: '10rem',
   objectFit: 'cover'
 };
 
@@ -35,7 +35,7 @@ export default class Memories extends React.Component {
       this.state.isLoading
         ? <p>Loading...</p>
         : <div className="container mt-nav pt-3">
-        <div className="d-flex flex-wrap justify-content-center justify-content-md-between">
+        <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
           {
             this.state.entries.map(entry => {
               return (
@@ -54,7 +54,7 @@ export default class Memories extends React.Component {
 function Entry(props) {
   const { entryId, imageUrl, date, address } = props.entry;
   return (
-    <div className="card me-2" style={style}>
+    <div className="card me-2 col" style={style}>
       <img src={imageUrl} className="rounded-top img-fluid" style={img} />
       <div className="card-body">
         <h5 className="card-title">
