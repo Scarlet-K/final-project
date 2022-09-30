@@ -55,7 +55,7 @@ app.post('/api/memento', (req, res, next) => {
   if (!date || !placeName || !latLng || !address || !description) {
     throw new ClientError(400, 'date, address, and description are required fields');
   }
-  const imageUrl = `/images/${req.file.filename}`;
+  const imageUrl = req.file.location;
   const sql = `
     insert into "entries" ("date", "placeName", "latLng", "address", "description", "imageUrl")
     values ($1, $2, $3, $4, $5, $6)

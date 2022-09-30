@@ -52,7 +52,7 @@ export default class Memories extends React.Component {
 }
 
 function Entry(props) {
-  const { entryId, imageUrl, date, address } = props.entry;
+  const { entryId, imageUrl, date, placeName } = props.entry;
   return (
     <div className="card me-2 col" style={style}>
       <img src={imageUrl} className="rounded-top img-fluid" style={img} />
@@ -62,7 +62,7 @@ function Entry(props) {
             {date}
           </Moment>
         </h5>
-        <p className="card-text">{address}</p>
+        <p className="card-text">@{placeName}</p>
         <div className="text-end">
           <a href={`#entry?entryId=${entryId}`} className="btn btn-primary">View</a>
         </div>
