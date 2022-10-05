@@ -12,9 +12,9 @@ export default class Nav extends React.Component {
       <nav className="navbar navbar-dark bg-primary fixed-top">
         <div className="container px-3">
           <a className="navbar-brand" href="#">Memento</a>
-            <button className="btn btn-primary" type="button" onClick={this.onClick}>
+            <a className="btn btn-primary" href="form">
               <i className="fa fa-plus" />
-            </button>
+            </a>
         </div>
       </nav>
     </>
