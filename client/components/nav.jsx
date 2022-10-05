@@ -1,17 +1,19 @@
 import React from 'react';
 
-export default function Nav(props) {
+export default class Nav extends React.Component {
 
-  return (
+  render() {
+    return (
     <>
       <nav className="navbar navbar-dark bg-primary fixed-top">
-        <div className="container justify-content-start">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <a className="navbar-brand mx-3" href="#">Memento</a>
+        <div className="container px-3">
+          <a className="navbar-brand" href="#">Memento</a>
+            <a className="btn btn-primary" href="#form">
+              <i className="fa fa-plus" />
+            </a>
         </div>
       </nav>
     </>
-  );
+    );
+  }
 }
