@@ -47,7 +47,7 @@ export default class Form extends React.Component {
       body: formData
     })
       .then(() => {
-        window.location.hash = '#memories';
+        window.location.hash = '#';
       })
       .catch(err => console.error('Fetch failed!', err));
   }

@@ -35,7 +35,7 @@ export default class Memories extends React.Component {
       this.state.isLoading
         ? <p>Loading...</p>
         : <div className="container mt-nav pt-3">
-        <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
+        <div className="d-flex flex-wrap justify-content-center justify-content-md-between">
           {
             this.state.entries.map(entry => {
               return (
@@ -54,7 +54,7 @@ export default class Memories extends React.Component {
 function Entry(props) {
   const { entryId, imageUrl, date, placeName } = props.entry;
   return (
-    <div className="card me-2 col" style={style}>
+    <div className="card me-3" style={style}>
       <img src={imageUrl} className="rounded-top img-fluid" style={img} />
       <div className="card-body">
         <h5 className="card-title">

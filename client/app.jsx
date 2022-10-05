@@ -1,8 +1,9 @@
 import React from 'react';
-import Form from './pages/home';
+import Form from './pages/form';
 import Memories from './pages/memories';
 import Nav from './components/nav';
 import parseRoute from './lib/parse-route';
+import Detail from './pages/detail';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,10 +24,14 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
+      return <Memories />;
+    }
+    if (route.path === 'form') {
       return <Form />;
     }
-    if (route.path === 'memories') {
-      return <Memories />;
+    if (route.path === 'entry') {
+      const entryId = route.params.get('entryId');
+      return <Detail entryId={entryId} />;
     }
   }
 
