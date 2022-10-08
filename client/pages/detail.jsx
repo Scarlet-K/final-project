@@ -32,11 +32,14 @@ export default class Detail extends React.Component {
               </div>
             </div>
             <div className="col-md px-3">
-              <h2 className="px-0 mt-2">
-                <Moment format="MM/DD/YYYY">
-                  {date}
-                </Moment>
-              </h2>
+              <div className="row justify-between">
+                <h2 className="col">
+                  <Moment format="MM/DD/YYYY">{date}</Moment>
+                </h2>
+                <span className="col text-end">
+                  <i className="fa fa-ellipsis-v"></i>
+                </span>
+              </div>
               <p className="px-0 mt-2">@{placeName}</p>
               <p>{description}</p>
             </div>
