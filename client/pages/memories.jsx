@@ -32,10 +32,12 @@ export default class Memories extends React.Component {
 
   render() {
     return (
-      this.state.isLoading
-        ? <p>Loading...</p>
+      this.state.entries.length === 0
+        ? <div className="container mt-nav pt-3 text-center">
+            <p>No entries recorded.</p>
+          </div>
         : <div className="container mt-nav pt-3">
-        <div className="d-flex flex-wrap justify-content-center justify-content-md-between">
+        <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
           {
             this.state.entries.map(entry => {
               return (
@@ -54,7 +56,7 @@ export default class Memories extends React.Component {
 function Entry(props) {
   const { entryId, imageUrl, date, placeName } = props.entry;
   return (
-    <div className="card me-3" style={style}>
+    <div className="card me-3 row-fluid" style={style}>
       <img src={imageUrl} className="rounded-top img-fluid" style={img} />
       <div className="card-body">
         <h5 className="card-title">
