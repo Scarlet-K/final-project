@@ -27,7 +27,7 @@ to make diaries more accessible in hopes that more people will enjoy its benefit
 
 ## Current Features
 - Users can upload a file
-- Users can search for the venue through autocomplete and geolocation  
+- Users can search for the venue using autocomplete and geolocation  
 - Users can record/save the special moment 
 - Users can see a list of their special moments
 - Users can see the full details of a special moment
