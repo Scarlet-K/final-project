@@ -27,7 +27,7 @@ I wanted to build this project because I am a nostalgic myself. There is a shelf
 - Users can search for the venue through autocomplete and geolocation  
 - Users can record/save the special moment 
 - Users can see a list of their special moments
-- Users can see the full details of special moment
+- Users can see the full details of a special moment
 
 ## Upcoming Features
 
