@@ -32,23 +32,25 @@ export default class Memories extends React.Component {
 
   render() {
     return (
-      this.state.entries.length === 0
-        ? <div className="container mt-nav pt-3 text-center">
-            <p>No entries recorded.</p>
-          </div>
-        : <div className="container mt-nav pt-3">
-        <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
-          {
-            this.state.entries.map(entry => {
-              return (
-                <div key={entry.entryId} className="mt-3">
-                  <Entry entry={entry} />
-                </div>
-              );
-            })
-          }
-        </div>
-      </div>
+      this.state.isLoading
+        ? <p>Loading...</p>
+        : this.state.entries.length === 0
+          ? <div className="container mt-nav pt-3 text-center">
+              <p>No entries recorded.</p>
+            </div>
+          : <div className="container mt-nav pt-3">
+              <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
+                {
+                  this.state.entries.map(entry => {
+                    return (
+                      <div key={entry.entryId} className="mt-3">
+                        <Entry entry={entry} />
+                      </div>
+                    );
+                  })
+                }
+              </div>
+            </div>
     );
   }
 }

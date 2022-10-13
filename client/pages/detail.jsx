@@ -6,7 +6,8 @@ export default class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      entry: null
+      entry: null,
+      dropdown: false
     };
   }
 
@@ -37,7 +38,15 @@ export default class Detail extends React.Component {
                   <Moment format="MM/DD/YYYY">{date}</Moment>
                 </h2>
                 <span className="col my-1 text-end">
-                  <button className="btn px-3"><i className="fa fa-ellipsis-v"></i></button>
+                  <div className="dropdown">
+                    <button className="btn px-3" data-bs-toggle="dropdown">
+                      <i className="fa fa-ellipsis-v"></i>
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-end">
+                      <li><a className="dropdown-item" href="#form">Edit</a></li>
+                      <li><a className="dropdown-item" href="#">Remove</a></li>
+                    </ul>
+                  </div>
                 </span>
               </div>
               <p className="px-0 mt-2">@{placeName}</p>
