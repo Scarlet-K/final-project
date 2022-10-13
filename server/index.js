@@ -15,6 +15,7 @@ const db = new pg.Pool({
 
 const app = express();
 
+app.use(express.json());
 app.use(staticMiddleware);
 app.use(uploadsMiddleware);
 
@@ -66,6 +67,35 @@ app.post('/api/memento', (req, res, next) => {
     .then(result => {
       const [entry] = result.rows;
       res.status(201).json(entry);
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/memento/:entryId', (req, res, next) => {
+  const entryId = Number(req.params.entryId);
+  if (!Number.isInteger(entryId) || entryId < 1) {
+    throw new ClientError(400, 'entryId must be a positive integer');
+  }
+  const { date, placeName, latLng, address, description } = req.body;
+  const imageUrl = req.file.location;
+  const sql = `
+    update "entries"
+      set "date"        = $1,
+          "placeName"   = $2,
+          "latLng"      = $3,
+          "address"     = $4,
+          "description" = $5,
+          "imageUrl"    = $6
+    where "entryId" = $7
+    returning *
+  `;
+  const params = [date, placeName, latLng, address, description, imageUrl, entryId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find entry with entryId ${entryId}`);
+      }
+      res.json(result.rows[0]);
     })
     .catch(err => next(err));
 });
