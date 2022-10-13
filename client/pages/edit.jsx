@@ -64,7 +64,7 @@ export default class Edit extends React.Component {
     formData.append('description', this.state.description);
     formData.append('image', image);
     fetch(`/api/memento/${this.props.entryId}`, {
-      method: 'PATCH',
+      method: 'PUT',
       body: formData
     })
       .then(() => {

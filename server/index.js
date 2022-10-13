@@ -71,7 +71,7 @@ app.post('/api/memento', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.patch('/api/memento/:entryId', (req, res, next) => {
+app.put('/api/memento/:entryId', (req, res, next) => {
   const entryId = Number(req.params.entryId);
   if (!Number.isInteger(entryId) || entryId < 1) {
     throw new ClientError(400, 'entryId must be a positive integer');
