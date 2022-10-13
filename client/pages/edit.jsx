@@ -31,12 +31,12 @@ export default class Edit extends React.Component {
         const defaultDate = new Date(date);
         const newDate = format(defaultDate, 'yyyy-MM-dd');
         this.setState({
-          imageUrl,
-          placeName,
-          description,
-          latLng,
           date: newDate,
+          placeName,
+          latLng,
           address,
+          description,
+          file: imageUrl,
           entry
         });
       });
@@ -64,10 +64,9 @@ export default class Edit extends React.Component {
     formData.append('description', this.state.description);
     formData.append('image', image);
     fetch(`/api/memento/${this.props.entryId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       body: formData
     })
-      .then(res => res.json())
       .then(() => {
         window.location.hash = `#entry?entryId=${this.props.entryId}`;
       })

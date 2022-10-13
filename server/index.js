@@ -71,7 +71,7 @@ app.post('/api/memento', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.put('/api/memento/:entryId', (req, res, next) => {
+app.patch('/api/memento/:entryId', (req, res, next) => {
   const entryId = Number(req.params.entryId);
   if (!Number.isInteger(entryId) || entryId < 1) {
     throw new ClientError(400, 'entryId must be a positive integer');
@@ -80,12 +80,12 @@ app.put('/api/memento/:entryId', (req, res, next) => {
   const imageUrl = req.file.location;
   const sql = `
     update "entries"
-      set "date"        = $1
-      set "placeName"   = $2
-      set "latLng"      = $3
-      set "address"     = $4
-      set "description" = $5
-      set "imageUrl"    = $6
+      set "date"        = $1,
+          "placeName"   = $2,
+          "latLng"      = $3,
+          "address"     = $4,
+          "description" = $5,
+          "imageUrl"    = $6
     where "entryId" = $7
     returning *
   `;
