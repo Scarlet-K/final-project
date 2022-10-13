@@ -1,5 +1,5 @@
 import React from 'react';
-import Moment from 'react-moment';
+import format from 'date-fns/format';
 
 const style = {
   width: '18rem',
@@ -57,14 +57,14 @@ export default class Memories extends React.Component {
 
 function Entry(props) {
   const { entryId, imageUrl, date, placeName } = props.entry;
+  const defaultDate = new Date(date);
+  const newDate = format(defaultDate, 'MM-dd-yyyy');
   return (
     <div className="card me-3 row-fluid" style={style}>
       <img src={imageUrl} className="rounded-top img-fluid" style={img} />
       <div className="card-body">
         <h5 className="card-title">
-          <Moment format="MM-DD-YYYY">
-            {date}
-          </Moment>
+          {newDate}
         </h5>
         <p className="card-text">@{placeName}</p>
         <div className="text-end">

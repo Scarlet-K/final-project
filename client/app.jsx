@@ -4,6 +4,7 @@ import Memories from './pages/memories';
 import Nav from './components/nav';
 import parseRoute from './lib/parse-route';
 import Detail from './pages/detail';
+import Edit from './pages/edit';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,6 +33,10 @@ export default class App extends React.Component {
     if (route.path === 'entry') {
       const entryId = route.params.get('entryId');
       return <Detail entryId={entryId} />;
+    }
+    if (route.path === 'edit') {
+      const entryId = route.params.get('entryId');
+      return <Edit entryId={entryId}/>;
     }
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Moment from 'react-moment';
 import Map from '../components/map';
+import format from 'date-fns/format';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -20,6 +20,8 @@ export default class Detail extends React.Component {
   render() {
     if (!this.state.entry) return null;
     const { imageUrl, date, placeName, description, latLng } = this.state.entry;
+    const defaultDate = new Date(date);
+    const newDate = format(defaultDate, 'MM-dd-yyyy');
     return (
       <>
         <div className="container mt-nav">
@@ -35,7 +37,7 @@ export default class Detail extends React.Component {
             <div className="col-md px-3">
               <div className="row mt-2 justify-between align-items-center">
                 <h2 className="col my-1">
-                  <Moment format="MM/DD/YYYY">{date}</Moment>
+                  {newDate}
                 </h2>
                 <span className="col my-1 text-end">
                   <div className="dropdown">
@@ -43,7 +45,7 @@ export default class Detail extends React.Component {
                       <i className="fa fa-ellipsis-v"></i>
                     </button>
                     <ul className="dropdown-menu dropdown-menu-end">
-                      <li><a className="dropdown-item" href="#form">Edit</a></li>
+                      <li><a className="dropdown-item" href={`#edit?entryId=${this.props.entryId}`}>Edit</a></li>
                       <li><a className="dropdown-item" href="#">Remove</a></li>
                     </ul>
                   </div>
