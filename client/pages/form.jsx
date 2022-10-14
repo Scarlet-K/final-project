@@ -46,9 +46,7 @@ export default class Form extends React.Component {
       method: 'POST',
       body: formData
     })
-      .then(() => {
-        window.location.hash = '#';
-      })
+      .then(() => { window.location.hash = '#'; })
       .catch(err => console.error('Fetch failed!', err));
   }
 

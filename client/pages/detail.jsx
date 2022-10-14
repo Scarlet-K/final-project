@@ -22,6 +22,7 @@ export default class Detail extends React.Component {
     fetch(`/api/memento/${this.props.entryId}`, {
       method: 'DELETE'
     })
+      .then(() => { window.location.hash = '#'; })
       .catch(err => console.error('Fetch failed!', err));
   }
 
@@ -54,7 +55,7 @@ export default class Detail extends React.Component {
                     </button>
                     <ul className="dropdown-menu dropdown-menu-end">
                       <li><a className="dropdown-item" href={`#edit?entryId=${this.props.entryId}`}>Edit</a></li>
-                      <li><a className="dropdown-item" href="#" onClick={this.onClick}>Remove</a></li>
+                      <li><button className="dropdown-item" onClick={this.onClick}>Remove</button></li>
                     </ul>
                   </div>
                 </span>
