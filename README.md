@@ -48,7 +48,6 @@ in hopes that more people will enjoy its benefits.
 
     ```shell
     git clone https://github.com/Scarlet-K/final-project.git  
-    cd memento
     ```
 
 2. Install all dependencies with NPM.
