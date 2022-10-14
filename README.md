@@ -2,13 +2,20 @@
 
 A web application for nostalgics who want to save and revisit meaningful moments.
 
-[Click Here for a Live Demo!](https://memento.sangahkim.com/)
+[Click to try Memento!](https://memento.sangahkim.com/)
 
 ## Inspiration
 In my closet, there is a shelf dedicated to diaries I've collected over the years.  
 Writing in my diary was one of the first ways I learned to organize my thoughts,  
 relieve stress, self-reflect, and foster creativity. I wanted to create this app  
 in hopes that more people will enjoy its benefits.
+
+## Preview  
+![Create](https://github.com/Scarlet-K/final-project/blob/main/create.gif)  
+
+![Edit](https://github.com/Scarlet-K/final-project/blob/main/editanddelete.gif)  
+
+
 
 ## Technologies
 - HTML5   
