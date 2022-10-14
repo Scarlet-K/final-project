@@ -9,12 +9,20 @@ export default class Detail extends React.Component {
       entry: null,
       dropdown: false
     };
+    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount() {
     fetch(`/api/memento/${this.props.entryId}`)
       .then(res => res.json())
       .then(entry => this.setState({ entry }));
+  }
+
+  onClick() {
+    fetch(`/api/memento/${this.props.entryId}`, {
+      method: 'DELETE'
+    })
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
@@ -46,7 +54,7 @@ export default class Detail extends React.Component {
                     </button>
                     <ul className="dropdown-menu dropdown-menu-end">
                       <li><a className="dropdown-item" href={`#edit?entryId=${this.props.entryId}`}>Edit</a></li>
-                      <li><a className="dropdown-item" href="#">Remove</a></li>
+                      <li><a className="dropdown-item" href="#" onClick={this.onClick}>Remove</a></li>
                     </ul>
                   </div>
                 </span>
