@@ -22,17 +22,17 @@ in hopes that more people will enjoy its benefits.
 - DbDesigner  
 - Webpack  
 - Babel  
-- Bootstrap  
+- Bootstrap 5  
 - Google Maps API
 
 ## Current Features
 - Users can upload a file
 - Users can search for the venue using autocomplete and geolocation  
-- Users can record/save the special moment 
-- Users can see a list of their special moments
-- Users can see the full details of a special moment  
-- Users can edit their entry of the special moment  
-- Users can delete their entry of the special moment
+- Users can create an entry 
+- Users can see a list of their entries
+- Users can see the full details of a selected entry 
+- Users can edit their entry 
+- Users can delete their entry
 
 ## Upcoming Features  
 - Users can mark an entry as a "milestone"  
