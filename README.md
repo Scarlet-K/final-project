@@ -11,11 +11,9 @@ relieve stress, self-reflect, and foster creativity. I wanted to create this app
 in hopes that more people will enjoy its benefits.
 
 ## Preview  
-![Create](https://github.com/Scarlet-K/final-project/blob/main/create.gif)  
+<img src=https://github.com/Scarlet-K/final-project/blob/main/create.gif width="600" height="500"/>  
 
-![Edit](https://github.com/Scarlet-K/final-project/blob/main/editanddelete.gif)  
-
-
+<img src=https://github.com/Scarlet-K/final-project/blob/main/editanddelete.gif width="600" height="500"/>  
 
 ## Technologies
 - HTML5   
