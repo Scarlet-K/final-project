@@ -4,7 +4,7 @@ A web application for nostalgics who want to save and revisit meaningful moments
 
 [Click Here for a Live Demo!](https://memento.sangahkim.com/)
 
-## Motive
+## Inspiration
 In my closet, there is a shelf dedicated to diaries I've collected over the years.  
 Writing in my diary was one of the first ways I learned to organize my thoughts,  
 relieve stress, self-reflect, and foster creativity. I wanted to create this app  
@@ -40,12 +40,14 @@ in hopes that more people will enjoy its benefits.
 - Users can choose to order their special moments by oldest/newest
 
 ## System Requirements
+- Node.js 10 or higher  
+- PostgreSQL
 
 ## Get Started
 1. Clone the repository.
 
     ```shell
-    git clone https://github.com/Scarlet-K/final-project.git
+    git clone https://github.com/Scarlet-K/final-project.git  
     cd memento
     ```
 
@@ -55,19 +57,27 @@ in hopes that more people will enjoy its benefits.
     npm install
     ```
 
-3. Create a new database.
+3. Create your own `.env` with appropriate API keys following the `.env.example`.
+
+    ```shell
+    cp .env.example .env
+    ```
+
+4. Create a new database.
 
     ```shell
     createdb memento
     ```
 
-4. Import the provided schema.sql and data.sql from the command line.
+5. Import the provided schema.sql and data.sql from the command line.
 
     ```shell
     npm run db:import
+    ```
     
-5. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+6. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
     ```shell
     npm run dev
+    ```
     
