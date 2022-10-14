@@ -30,9 +30,14 @@ in hopes that more people will enjoy its benefits.
 - Users can search for the venue using autocomplete and geolocation  
 - Users can record/save the special moment 
 - Users can see a list of their special moments
-- Users can see the full details of a special moment
+- Users can see the full details of a special moment  
+- Users can edit their entry of the special moment  
+- Users can delete their entry of the special moment
 
-## Upcoming Features
+## Upcoming Features  
+- Users can mark an entry as a "milestone"  
+- Users can see a list of just their "milestones"  
+- Users can choose to order their special moments by oldest/newest
 
 ## System Requirements
 
