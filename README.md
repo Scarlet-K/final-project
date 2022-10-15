@@ -6,14 +6,13 @@ A web application for nostalgics who want to save and revisit meaningful moments
 
 ## Inspiration
 In my closet, there is a shelf dedicated to diaries I've collected over the years.  
-Writing in my diary was one of the first ways I learned to organize my thoughts,  
-relieve stress, self-reflect, and foster creativity. I wanted to create this app  
-in hopes that more people will enjoy its benefits.
+Writing in my diary taught me how to organize my thoughts, self-reflect, and celebrate small victories.  
+I wanted to create this app in hopes that more people will enjoy its benefits.
 
 ## Preview  
-<img src=https://github.com/Scarlet-K/final-project/blob/main/create.gif width="75%" height="50%"/>  
+<img src=https://github.com/Scarlet-K/final-project/blob/main/create.gif width="80%" height="60%"/>  
 
-<img src=https://github.com/Scarlet-K/final-project/blob/main/editanddelete.gif width="75%" height="50%"/>  
+<img src=https://github.com/Scarlet-K/final-project/blob/main/editanddelete.gif width="80%" height="60%"/>  
 
 ## Technologies
 - HTML5   
