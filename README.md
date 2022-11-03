@@ -7,7 +7,7 @@ A web application for nostalgics who want to save and revisit meaningful moments
 ## Inspiration
 In my closet, there is a shelf dedicated to diaries I've collected over the years.  
 Writing in my diary taught me how to organize my thoughts, self-reflect, and celebrate small victories.  
-I wanted to create this app in hopes that more people will enjoy its benefits.
+I created this app in hopes that more people will enjoy its benefits.
 
 ## Preview  
 <img src=https://github.com/Scarlet-K/final-project/blob/main/create.gif width="80%" height="60%"/>  
