@@ -41,7 +41,7 @@ I created this app in hopes that more people will enjoy its benefits.
 ## Upcoming Features  
 - Users can mark an entry as a "milestone"  
 - Users can see a list of just their "milestones"  
-- Users can choose to order their entries from oldest/newest
+- Users can choose to sort their entries from oldest/newest
 
 ## System Requirements
 - Node.js 10 or higher  
